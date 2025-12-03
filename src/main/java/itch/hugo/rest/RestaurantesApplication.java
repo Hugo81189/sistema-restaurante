@@ -19,13 +19,17 @@ public class RestaurantesApplication {
 	@Configuration
 	public class GlobalCorsConfig {
 
-	    @Bean
+		@Bean
 	    public WebMvcConfigurer corsConfigurer() {
 	        return new WebMvcConfigurer() {
 	            @Override
 	            public void addCorsMappings(CorsRegistry registry) {
 	                registry.addMapping("/**")
-	                        .allowedOrigins("http://localhost:3000", "http://localhost:5173") // Add your frontend URLs here
+	                        // ⚠️ IMPORTANTE: Usa allowedOriginPatterns para permitir subdominios de Vercel
+	                        .allowedOriginPatterns(
+	                            "http://localhost:*", 
+	                            "https://*.vercel.app" 
+	                        )
 	                        .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
 	                        .allowedHeaders("*")
 	                        .allowCredentials(true);
