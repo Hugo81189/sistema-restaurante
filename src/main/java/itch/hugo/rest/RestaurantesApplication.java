@@ -25,7 +25,7 @@ public class RestaurantesApplication {
 	            @Override
 	            public void addCorsMappings(CorsRegistry registry) {
 	                registry.addMapping("/**")
-	                        // ⚠️ IMPORTANTE: Usa allowedOriginPatterns para permitir subdominios de Vercel
+	                        // IMPORTANTE: Usa allowedOriginPatterns para permitir subdominios de Vercel
 	                        .allowedOriginPatterns(
 	                            "http://localhost:*", 
 	                            "https://*.vercel.app" 

@@ -30,10 +30,10 @@ public class SecurityConfig {
 	@Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-            // 1. ✅ AGREGADO: Configuración de CORS (Lo nuevo)
+            // 1. AGREGADO: Configuraciion de CORS (Lo nuevo)
             .cors(cors -> cors.configurationSource(corsConfigurationSource()))
             
-            // 2. Lo que ya tenías (Mantenlo igual)
+            // 2. Lo que ya tenias (Mantenlo igual)
             .csrf(csrf -> csrf.disable())
             .sessionManagement(session -> session
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
@@ -48,13 +48,13 @@ public class SecurityConfig {
                 .anyRequest().authenticated()
             )
             
-            // 3. ✅ VITAL: Tu filtro JWT (¡No lo borres!)
+            
             .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
 
-    // 4. ✅ AGREGADO: El Bean que define quién puede entrar (Vercel, Localhost)
+    // 4. AGREGADO: El Bean que define quién puede entrar (Vercel, Localhost)
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
