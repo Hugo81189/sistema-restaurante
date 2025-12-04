@@ -60,16 +60,15 @@ public class SecurityConfig {
         CorsConfiguration configuration = new CorsConfiguration();
         
         // Aquí pones TODAS las URLs que deben tener acceso
-        configuration.setAllowedOrigins(Arrays.asList(
-            "http://localhost:3000",
-            "http://localhost:5173",
-            "https://restaurante-microservicios.vercel.app", 
-            "https://restaurante-microservicios-jl8lytowf-hugo-gs-projects-d77ee8cd.vercel.app" // Tu URL específica del error
-        ));
+        configuration.setAllowedOriginPatterns(Arrays.asList(
+                "http://localhost:*",
+                "https://*.vercel.app"
+            ));
         
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("*"));
         configuration.setAllowCredentials(true);
+        configuration.setMaxAge(3600L);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
